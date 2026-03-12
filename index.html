@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Weekly Review — ChronoAI Partnerships</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+SC:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#07070d;--surface:#0f0f1a;
+  --border:rgba(255,255,255,.06);--text:#f0f0f5;--muted:rgba(240,240,245,.5);
+  --accent:#7c5cfc;--accent-glow:rgba(124,92,252,.2);
+  --blue:#4f8fff;--purple:#a855f7;--green:#22c55e;--gold:#e8c36a;--rose:#fb7185;
+  --g1:linear-gradient(135deg,#7c5cfc,#4f8fff);
+  --g2:linear-gradient(135deg,#0f0f1a,#1a1a35);
+  --glass:rgba(255,255,255,.04);--gb:rgba(255,255,255,.08);
+}
+html{scroll-behavior:smooth;scroll-snap-type:y mandatory}
+body{font-family:'Inter','Noto Sans SC',system-ui,sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+
+.slide{min-height:100vh;scroll-snap-align:start;display:flex;align-items:center;justify-content:center;position:relative;padding:56px 80px;overflow:hidden}
+@media(max-width:768px){.slide{padding:40px 24px}}
+.inner{max-width:1100px;width:100%;position:relative;z-index:2}
+
+/* Orbs */
+.orb{position:absolute;border-radius:50%;filter:blur(120px);pointer-events:none;opacity:.25}
+.o1{width:600px;height:600px;background:radial-gradient(circle,#7c5cfc,transparent 70%);top:-200px;right:-200px}
+.o2{width:500px;height:500px;background:radial-gradient(circle,#4f8fff,transparent 70%);bottom:-200px;left:-150px}
+.o3{width:400px;height:400px;background:radial-gradient(circle,#a855f7,transparent 70%);top:50%;left:50%;transform:translate(-50%,-50%)}
+
+/* Type */
+.badge{display:inline-flex;align-items:center;gap:6px;padding:6px 16px;border-radius:100px;font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;background:var(--glass);border:1px solid var(--gb);color:var(--accent);margin-bottom:20px}
+.badge::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--accent);box-shadow:0 0 8px var(--accent-glow)}
+.badge.green{color:var(--green)}.badge.green::before{background:var(--green);box-shadow:0 0 8px rgba(34,197,94,.4)}
+.badge.gold{color:var(--gold)}.badge.gold::before{background:var(--gold);box-shadow:0 0 8px rgba(232,195,106,.4)}
+
+h1{font-size:clamp(38px,5.5vw,68px);font-weight:800;line-height:1.06;letter-spacing:-2px;background:linear-gradient(135deg,#fff,rgba(255,255,255,.7));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:16px}
+h2{font-size:clamp(28px,3.8vw,50px);font-weight:700;line-height:1.1;letter-spacing:-1.5px;margin-bottom:14px}
+.sub{font-size:clamp(15px,1.8vw,19px);color:var(--muted);line-height:1.75;max-width:680px}
+.divider{width:56px;height:2px;background:var(--g1);margin:28px 0;border-radius:2px}
+
+/* Cards */
+.card{background:var(--glass);border:1px solid var(--gb);border-radius:18px;padding:28px;transition:transform .3s,box-shadow .3s;position:relative;overflow:hidden}
+.card:hover{transform:translateY(-3px);box-shadow:0 16px 50px rgba(124,92,252,.08)}
+.card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--g1);opacity:0;transition:opacity .3s}
+.card:hover::before{opacity:1}
+.card-label{font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--accent);margin-bottom:8px}
+.card h3{font-size:17px;font-weight:700;margin-bottom:8px;line-height:1.3}
+.card p{font-size:13px;color:var(--muted);line-height:1.7}
+
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:36px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:32px}
+@media(max-width:900px){.grid3,.grid2{grid-template-columns:1fr}}
+
+/* Pill tag */
+.tag{display:inline-block;padding:4px 14px;border-radius:100px;font-size:11px;font-weight:600;background:var(--accent-glow);color:var(--accent)}
+.tag.blue{background:rgba(79,143,255,.1);color:var(--blue)}
+.tag.green{background:rgba(34,197,94,.1);color:var(--green)}
+.tag.gold{background:rgba(232,195,106,.1);color:var(--gold)}
+.tag.purple{background:rgba(168,85,247,.1);color:var(--purple)}
+.tag.rose{background:rgba(251,113,133,.1);color:var(--rose)}
+
+/* Timeline row */
+.tl{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:28px}
+.tl-item{background:var(--glass);border:1px solid var(--gb);border-radius:14px;padding:18px;text-align:center}
+.tl-item.hot{border-color:rgba(124,92,252,.3);box-shadow:0 0 30px var(--accent-glow)}
+.tl-date{font-size:22px;font-weight:800;background:var(--g1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.tl-label{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-top:4px}
+
+/* Stat */
+.stat-val{font-size:42px;font-weight:800;background:var(--g1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1}
+.stat-label{font-size:12px;color:var(--muted);margin-top:4px;font-weight:500}
+
+/* Nav */
+.nav-dots{position:fixed;right:28px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:10px;z-index:100}
+.nav-dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.15);cursor:pointer;transition:all .3s;border:none;padding:0}
+.nav-dot.active{background:var(--accent);box-shadow:0 0 8px var(--accent-glow);transform:scale(1.3)}
+.pnum{position:absolute;bottom:28px;right:36px;font-size:11px;color:rgba(255,255,255,.18);letter-spacing:1px;z-index:3}
+
+/* Fade */
+.fi{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
+.fi.visible{opacity:1;transform:translateY(0)}
+.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}.d4{transition-delay:.4s}
+
+/* Lang */
+.lang{position:fixed;top:24px;right:28px;z-index:200;display:flex;background:var(--glass);border:1px solid var(--gb);border-radius:100px;backdrop-filter:blur(20px);padding:3px}
+.lb{padding:6px 14px;border-radius:100px;font-size:11px;font-weight:700;color:var(--muted);border:none;background:transparent;cursor:pointer;transition:all .2s;letter-spacing:.5px}
+.lb.active{background:var(--accent);color:#fff;box-shadow:0 2px 10px var(--accent-glow)}
+[data-i18n]{transition:opacity .2s}
+.fading [data-i18n]{opacity:0}
+
+/* Partner logos */
+.plogo{background:var(--glass);border:1px solid var(--gb);border-radius:14px;padding:16px;display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center}
+.plogo img{max-width:64px;max-height:38px;object-fit:contain}
+.plogo-name{font-size:12px;font-weight:700;color:var(--text)}
+.plogo-role{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.5px}
+
+/* Task list */
+.task{display:flex;align-items:flex-start;gap:12px;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.04)}
+.task:last-child{border-bottom:none}
+.task-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;margin-top:5px}
+.task-text{font-size:14px;color:var(--text);line-height:1.5;font-weight:500}
+.task-sub{font-size:12px;color:var(--muted);margin-top:2px;line-height:1.5}
+
+/* Channel cards */
+.ch-card{background:var(--glass);border:1px solid var(--gb);border-radius:16px;padding:22px 24px}
+.ch-icon{font-size:20px;margin-bottom:10px}
+.ch-name{font-size:15px;font-weight:700;margin-bottom:6px}
+.ch-desc{font-size:13px;color:var(--muted);line-height:1.6}
+.ch-purpose{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px}
+
+/* Outcome row */
+.outcome{display:flex;gap:16px;align-items:flex-start;padding:16px 0;border-bottom:1px solid rgba(255,255,255,.04)}
+.outcome:last-child{border-bottom:none}
+.out-icon{font-size:22px;flex-shrink:0;width:36px;text-align:center}
+.out-title{font-size:15px;font-weight:700;color:var(--text);margin-bottom:3px}
+.out-desc{font-size:13px;color:var(--muted);line-height:1.6}
+</style>
+</head>
+<body>
+
+<div class="lang"><button class="lb active" onclick="setLang('en')">EN</button><button class="lb" onclick="setLang('zh')">中文</button></div>
+<nav class="nav-dots" id="navDots"></nav>
+
+<!-- ═══ SLIDE 1 — WHAT'S NEXT: THE EVENT ═══════════════════════════ -->
+<section class="slide" id="s0">
+  <div class="pnum">01 / 05</div>
+  <div class="orb o1"></div><div class="orb o2"></div>
+  <div class="inner">
+    <div class="fi">
+      <div class="badge green" data-i18n="b1" data-en="Community & Events" data-zh="社区与活动">Community & Events</div>
+    </div>
+    <h1 class="fi d1" data-i18n="h1" data-en="Why We're Running<br>What's Next." data-zh="我们为什么要<br>举办 What's Next。">Why We're Running<br>What's Next.</h1>
+    <p class="sub fi d2" data-i18n="s1" data-en="Singapore has demo nights, hackathons, and networking events. What it doesn't have is a space that bridges building with what comes after — the launch, the market, the commercial reality. That's the gap we're filling." data-zh="新加坡有演示之夜、黑客马拉松和网络活动。但没有一个空间能连接构建与之后的事情——发布、市场、商业现实。这是我们要填补的空白。">Singapore has demo nights, hackathons, and networking events. What it doesn't have is a space that bridges building with what comes after — the launch, the market, the commercial reality. That's the gap we're filling.</p>
+    <div class="divider fi d2"></div>
+
+    <div class="grid3 fi d3">
+      <div class="card">
+        <div class="card-label" data-i18n="cl1" data-en="The Gap We Found" data-zh="我们发现的空白">The Gap We Found</div>
+        <h3 data-i18n="ch1" data-en="Everyone's building. Nobody's launching." data-zh="每个人都在构建。没有人在发布。">Everyone's building. Nobody's launching.</h3>
+        <p data-i18n="cp1" data-en="SG's AI events cover demos and networking. None address the critical space between shipped product and real users. That's where builders are stuck." data-zh="新加坡的AI活动涵盖演示和网络。没有一个活动解决已发布产品和真实用户之间的关键空间。这正是构建者卡住的地方。">SG's AI events cover demos and networking. None address the critical space between shipped product and real users. That's where builders are stuck.</p>
+      </div>
+      <div class="card" style="border-color:rgba(124,92,252,.15);background:rgba(124,92,252,.03)">
+        <div class="card-label" style="color:var(--purple)" data-i18n="cl2" data-en="Our Unique Position" data-zh="我们的独特定位">Our Unique Position</div>
+        <h3 data-i18n="ch2" data-en="We have both sides of the equation." data-zh="我们拥有等式的两边。">We have both sides of the equation.</h3>
+        <p data-i18n="cp2" data-en="ChronoAI builds internally with AI and runs marketing, brand, and partnerships. That combination — technical + commercial — is what the community needs and what nobody else offers." data-zh="ChronoAI在内部用AI构建，并运营营销、品牌和合作关系。这种组合——技术+商业——是社区需要的，也是其他人没有提供的。">ChronoAI builds internally with AI and runs marketing, brand, and partnerships. That combination — technical + commercial — is what the community needs and what nobody else offers.</p>
+      </div>
+      <div class="card" style="border-color:rgba(34,197,94,.15);background:rgba(34,197,94,.03)">
+        <div class="card-label" style="color:var(--green)" data-i18n="cl3" data-en="What We Give Back" data-zh="我们的回馈">What We Give Back</div>
+        <h3 data-i18n="ch3" data-en="A recurring community fixture — not a one-off." data-zh="一个持续的社区活动——不是一次性的。">A recurring community fixture — not a one-off.</h3>
+        <p data-i18n="cp3" data-en="Free. Curated. Monthly. Built around what builders actually ask for. This is ChronoAI earning its place in Singapore's AI ecosystem — through consistent presence and real value, not claims." data-zh="免费。精选。每月一次。围绕构建者真正需要的内容构建。这是ChronoAI通过持续存在和真实价值——而非声索——在新加坡AI生态系统中赢得一席之地。">Free. Curated. Monthly. Built around what builders actually ask for. This is ChronoAI earning its place in Singapore's AI ecosystem — through consistent presence and real value, not claims.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SLIDE 2 — PROGRAMMING + PARTNERS ════════════════════════════ -->
+<section class="slide" id="s1">
+  <div class="pnum">02 / 05</div>
+  <div class="orb o3"></div>
+  <div class="inner">
+    <div class="fi">
+      <div class="badge gold" data-i18n="b2" data-en="Episode 1 · March 27" data-zh="第一期 · 3月27日">Episode 1 · March 27</div>
+    </div>
+    <h2 class="fi d1" data-i18n="h2" data-en="Programming & Partners." data-zh="活动日程与合作伙伴。">Programming & Partners.</h2>
+    <p class="sub fi d2" data-i18n="s2" data-en="50 curated builders, solopreneurs, and investors. One evening. Three ways to engage." data-zh="50位精选构建者、独立创业者和投资者。一个晚上。三种参与方式。">50 curated builders, solopreneurs, and investors. One evening. Three ways to engage.</p>
+
+    <div class="grid2 fi d3" style="margin-top:28px">
+      <!-- LEFT: Programming -->
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <div class="card" style="padding:20px 24px">
+          <div style="display:flex;gap:10px;align-items:center;margin-bottom:12px">
+            <span style="font-size:18px">🎓</span>
+            <div>
+              <div class="card-label" data-i18n="prl1" data-en="5:00 PM — Learn" data-zh="下午5:00 — 学习">5:00 PM — Learn</div>
+              <div style="font-size:14px;font-weight:700;color:var(--text)" data-i18n="prh1" data-en="Opening Speeches" data-zh="开场演讲">Opening Speeches</div>
+            </div>
+          </div>
+          <p style="font-size:12px;color:var(--muted);line-height:1.6" data-i18n="prp1" data-en="Li Fan (welcome), Terence — Hashmeta (vibe marketing), Prof Liu Yang — NTU (trustworthy AI). 10 min each. No fluff." data-zh="李凡（欢迎），Terence — Hashmeta（vibe营销），刘杨教授 — NTU（可信AI）。每人10分钟。无废话。">Li Fan (welcome), Terence — Hashmeta (vibe marketing), Prof Liu Yang — NTU (trustworthy AI). 10 min each. No fluff.</p>
+        </div>
+        <div class="card" style="padding:20px 24px">
+          <div style="display:flex;gap:10px;align-items:center;margin-bottom:12px">
+            <span style="font-size:18px">🚀</span>
+            <div>
+              <div class="card-label" data-i18n="prl2" data-en="5:30 PM — Demo" data-zh="下午5:30 — 演示">5:30 PM — Demo</div>
+              <div style="font-size:14px;font-weight:700;color:var(--text)" data-i18n="prh2" data-en="Built → Live in 3 Days" data-zh="构建 → 3天上线">Built → Live in 3 Days</div>
+            </div>
+          </div>
+          <p style="font-size:12px;color:var(--muted);line-height:1.6" data-i18n="prp2" data-en="SoulGarden + RiteSet walk through the exact process — from idea to App Store in 3 days. Then 3 curated external builder demos." data-zh="SoulGarden + RiteSet逐步讲解确切流程——从想法到3天内上架App Store。然后是3个精选外部构建者演示。">SoulGarden + RiteSet walk through the exact process — from idea to App Store in 3 days. Then 3 curated external builder demos.</p>
+        </div>
+        <div class="card" style="padding:20px 24px">
+          <div style="display:flex;gap:10px;align-items:center;margin-bottom:12px">
+            <span style="font-size:18px">💬</span>
+            <div>
+              <div class="card-label" data-i18n="prl3" data-en="6:45 PM — Show & Ask" data-zh="下午6:45 — 展示与提问">6:45 PM — Show & Ask</div>
+              <div style="font-size:14px;font-weight:700;color:var(--text)" data-i18n="prh3" data-en="Direct Expert Feedback" data-zh="专家直接反馈">Direct Expert Feedback</div>
+            </div>
+          </div>
+          <p style="font-size:12px;color:var(--muted);line-height:1.6" data-i18n="prp3" data-en="Builders present their app or idea. Li Fan, Nicholas, Dannick give direct, honest feedback. No gatekeeping. 6 spots, pre-applied." data-zh="构建者展示他们的应用或想法。李凡、Nicholas、Dannick给予直接、诚实的反馈。无门槛。6个名额，需提前申请。">Builders present their app or idea. Li Fan, Nicholas, Dannick give direct, honest feedback. No gatekeeping. 6 spots, pre-applied.</p>
+        </div>
+      </div>
+
+      <!-- RIGHT: Partners + Stats -->
+      <div style="display:flex;flex-direction:column;gap:16px">
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px">
+          <div class="plogo"><div style="font-size:22px">🏢</div><div class="plogo-name">Hashmeta</div><div class="plogo-role" data-i18n="pr1" data-en="Speaker" data-zh="演讲者">Speaker</div></div>
+          <div class="plogo"><div style="font-size:22px">🤖</div><div class="plogo-name">AI APEX Asia</div><div class="plogo-role" data-i18n="pr2" data-en="Knowledge" data-zh="知识">Knowledge</div></div>
+          <div class="plogo"><div style="font-size:22px">💬</div><div class="plogo-name">First Prompt</div><div class="plogo-role" data-i18n="pr3" data-en="Community" data-zh="社区">Community</div></div>
+          <div class="plogo"><div style="font-size:22px">📰</div><div class="plogo-name">e27</div><div class="plogo-role" data-i18n="pr4" data-en="Media" data-zh="媒体">Media</div></div>
+          <div class="plogo"><div style="font-size:22px">🚀</div><div class="plogo-name">SGInnovate</div><div class="plogo-role" data-i18n="pr5" data-en="Ecosystem" data-zh="生态系统">Ecosystem</div></div>
+          <div class="plogo" style="border-style:dashed;opacity:.5"><div style="font-size:22px">＋</div><div class="plogo-name" data-i18n="prm" data-en="More TBC" data-zh="更多待定">More TBC</div></div>
+        </div>
+
+        <div class="tl" style="grid-template-columns:repeat(2,1fr)">
+          <div class="tl-item"><div class="tl-date">Mar 13</div><div class="tl-label" data-i18n="tl1" data-en="Lu.ma Live" data-zh="Lu.ma上线">Lu.ma Live</div></div>
+          <div class="tl-item hot"><div class="tl-date">Mar 27</div><div class="tl-label" data-i18n="tl2" data-en="Event Day" data-zh="活动日">Event Day</div></div>
+        </div>
+
+        <div style="display:flex;gap:24px;background:var(--glass);border:1px solid var(--gb);border-radius:14px;padding:18px 22px">
+          <div><div class="stat-val">50</div><div class="stat-label" data-i18n="st1" data-en="Curated pax" data-zh="精选参会者">Curated pax</div></div>
+          <div style="width:1px;background:rgba(255,255,255,.06)"></div>
+          <div><div class="stat-val">5</div><div class="stat-label" data-i18n="st2" data-en="Partners confirmed" data-zh="已确认合作伙伴">Partners confirmed</div></div>
+          <div style="width:1px;background:rgba(255,255,255,.06)"></div>
+          <div><div class="stat-val">Free</div><div class="stat-label" data-i18n="st3" data-en="To attend" data-zh="参会免费">To attend</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SLIDE 3 — WHATSAPP: THE STRATEGY ════════════════════════════ -->
+<section class="slide" id="s2">
+  <div class="pnum">03 / 05</div>
+  <div class="orb o1" style="top:auto;bottom:-100px;right:auto;left:-100px"></div>
+  <div class="inner">
+    <div class="fi">
+      <div class="badge" data-i18n="b3" data-en="Community Strategy" data-zh="社区战略">Community Strategy</div>
+    </div>
+    <h2 class="fi d1" data-i18n="h3" data-en="AI Builders & Vibe-Coders.<br>The community play." data-zh="AI构建者与Vibe编程者。<br>社区战略。">AI Builders & Vibe-Coders.<br>The community play.</h2>
+    <p class="sub fi d2" data-i18n="s3" data-en="A WhatsApp community with 4 channels — built on one principle: we are the gardeners, not the brand. We add value first. Everything else follows." data-zh="一个拥有4个频道的WhatsApp社区——建立在一个原则上：我们是园丁，不是品牌。我们先创造价值。其他一切随之而来。">A WhatsApp community with 4 channels — built on one principle: we are the gardeners, not the brand. We add value first. Everything else follows.</p>
+    <div class="divider fi d2"></div>
+
+    <div class="grid2 fi d3">
+      <!-- Channel Structure -->
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--muted);margin-bottom:4px" data-i18n="chl" data-en="Channel Structure" data-zh="频道结构">Channel Structure</div>
+        <div class="ch-card">
+          <div class="ch-icon">🌐</div>
+          <div class="ch-purpose" style="color:var(--accent)" data-i18n="chn1" data-en="Main Channel — Heartbeat" data-zh="主频道 — 心跳">Main Channel — Heartbeat</div>
+          <div class="ch-desc" data-i18n="chd1" data-en="Weekly prompts, community wins, big announcements. 3–4 posts max per week. Quality beats volume." data-zh="每周提示、社区成就、重要公告。每周最多3-4条。质量胜过数量。">Weekly prompts, community wins, big announcements. 3–4 posts max per week. Quality beats volume.</div>
+        </div>
+        <div class="ch-card">
+          <div class="ch-icon">🇸🇬</div>
+          <div class="ch-purpose" style="color:var(--blue)" data-i18n="chn2" data-en="Singapore AI — Local Intelligence" data-zh="新加坡AI — 本地情报">Singapore AI — Local Intelligence</div>
+          <div class="ch-desc" data-i18n="chd2" data-en="SG events, grants, jobs, opportunities. Curated daily. Goal: become the most useful SG AI resource members have." data-zh="新加坡活动、补贴、工作、机会。每日策划。目标：成为成员拥有的最有用的新加坡AI资源。">SG events, grants, jobs, opportunities. Curated daily. Goal: become the most useful SG AI resource members have.</div>
+        </div>
+        <div class="ch-card">
+          <div class="ch-icon">🚀</div>
+          <div class="ch-purpose" style="color:var(--green)" data-i18n="chn3" data-en="Showcase — Ship It Here" data-zh="展示 — 在这里发布">Showcase — Ship It Here</div>
+          <div class="ch-desc" data-i18n="chd3" data-en="Every post gets a response from ChronoAI within 24 hours. No exceptions. This signals that sharing is worth it." data-zh="每条帖子在24小时内都会收到ChronoAI的回复。没有例外。这表明分享是值得的。">Every post gets a response from ChronoAI within 24 hours. No exceptions. This signals that sharing is worth it.</div>
+        </div>
+        <div class="ch-card">
+          <div class="ch-icon">🦞</div>
+          <div class="ch-purpose" style="color:var(--purple)" data-i18n="chn4" data-en="OpenClaw — Cultural Glue" data-zh="OpenClaw — 文化粘合剂">OpenClaw — Cultural Glue</div>
+          <div class="ch-desc" data-i18n="chd4" data-en="Hot takes, tools, rabbit holes. Where real relationships form. Most engaged members here become community champions." data-zh="热门观点、工具、深度探索。真实关系在这里形成。这里最活跃的成员成为社区冠军。">Hot takes, tools, rabbit holes. Where real relationships form. Most engaged members here become community champions.</div>
+        </div>
+      </div>
+
+      <!-- Right: Principles + Rhythm -->
+      <div style="display:flex;flex-direction:column;gap:16px">
+        <div class="card" style="border-color:rgba(124,92,252,.15);background:rgba(124,92,252,.03)">
+          <div class="card-label" data-i18n="prl" data-en="Core Principles" data-zh="核心原则">Core Principles</div>
+          <div style="display:flex;flex-direction:column;gap:10px;margin-top:4px">
+            <div style="display:flex;gap:10px;align-items:flex-start"><span style="color:var(--green);font-size:14px;flex-shrink:0">✓</span><span style="font-size:13px;color:var(--text)" data-i18n="pr_1" data-en="Value-first, extract never — we give before we ask" data-zh="价值优先，绝不索取——我们先给予再要求">Value-first, extract never — we give before we ask</span></div>
+            <div style="display:flex;gap:10px;align-items:flex-start"><span style="color:var(--green);font-size:14px;flex-shrink:0">✓</span><span style="font-size:13px;color:var(--text)" data-i18n="pr_2" data-en="Daily team presence — 15 min per day, 3 reactions, 1 reply minimum" data-zh="每日团队存在——每天15分钟，最少3个反应，1个回复">Daily team presence — 15 min per day, 3 reactions, 1 reply minimum</span></div>
+            <div style="display:flex;gap:10px;align-items:flex-start"><span style="color:var(--green);font-size:14px;flex-shrink:0">✓</span><span style="font-size:13px;color:var(--text)" data-i18n="pr_3" data-en="Never broadcast without giving something — no one-way megaphone" data-zh="发布前必须先给予——不做单向广播">Never broadcast without giving something — no one-way megaphone</span></div>
+            <div style="display:flex;gap:10px;align-items:flex-start"><span style="color:var(--green);font-size:14px;flex-shrink:0">✓</span><span style="font-size:13px;color:var(--text)" data-i18n="pr_4" data-en="Grow quality, not quantity — 150 engaged builders beats 1000 lurkers" data-zh="追求质量而非数量——150个活跃构建者胜过1000个潜水者">Grow quality, not quantity — 150 engaged builders beats 1000 lurkers</span></div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-label" data-i18n="wrl" data-en="Weekly Rhythm" data-zh="每周节奏">Weekly Rhythm</div>
+          <div style="display:flex;flex-direction:column;gap:8px;margin-top:4px">
+            <div style="display:flex;justify-content:space-between;align-items:center;font-size:13px"><span style="color:var(--muted)">Mon</span><span style="color:var(--text)" data-i18n="wr1" data-en="Community prompt + SG weekly roundup" data-zh="社区话题 + 新加坡周报">Community prompt + SG weekly roundup</span></div>
+            <div style="display:flex;justify-content:space-between;align-items:center;font-size:13px"><span style="color:var(--muted)">Tue</span><span style="color:var(--text)" data-i18n="wr2" data-en="Team drops WIP in Showcase" data-zh="团队在展示区分享进行中的作品">Team drops WIP in Showcase</span></div>
+            <div style="display:flex;justify-content:space-between;align-items:center;font-size:13px"><span style="color:var(--muted)">Wed</span><span style="color:var(--text)" data-i18n="wr3" data-en="OpenClaw hot take / tool drop" data-zh="OpenClaw热门观点/工具分享">OpenClaw hot take / tool drop</span></div>
+            <div style="display:flex;justify-content:space-between;align-items:center;font-size:13px"><span style="color:var(--muted)">Thu</span><span style="color:var(--text)" data-i18n="wr4" data-en="SG opportunity drop (job / grant / collab)" data-zh="新加坡机会分享（工作/补贴/合作）">SG opportunity drop (job / grant / collab)</span></div>
+            <div style="display:flex;justify-content:space-between;align-items:center;font-size:13px"><span style="color:var(--muted)">Fri</span><span style="color:var(--text)" data-i18n="wr5" data-en='"What are you shipping this weekend?"' data-zh='"这个周末你在做什么？"'>"What are you shipping this weekend?"</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SLIDE 4 — WHATSAPP: STRATEGIC OUTCOMES ══════════════════════ -->
+<section class="slide" id="s3">
+  <div class="pnum">04 / 05</div>
+  <div class="orb o2" style="bottom:auto;top:20%;right:-100px"></div>
+  <div class="inner">
+    <div class="fi">
+      <div class="badge" data-i18n="b4" data-en="Strategic Outcomes" data-zh="战略成果">Strategic Outcomes</div>
+    </div>
+    <h2 class="fi d1" data-i18n="h4" data-en="Why this matters<br>for ChronoAI." data-zh="这对ChronoAI<br>为何重要。">Why this matters<br>for ChronoAI.</h2>
+    <p class="sub fi d2" data-i18n="s4" data-en="The community is not a marketing channel. It's the infrastructure that makes ChronoAI's commercial ambitions possible — and defensible." data-zh="社区不是营销渠道。它是使ChronoAI商业雄心成为可能并且可以持续的基础设施。">The community is not a marketing channel. It's the infrastructure that makes ChronoAI's commercial ambitions possible — and defensible.</p>
+    <div class="divider fi d2"></div>
+
+    <div class="grid2 fi d3">
+      <div style="display:flex;flex-direction:column">
+        <div class="outcome">
+          <div class="out-icon">🧠</div>
+          <div><div class="out-title" data-i18n="ot1" data-en="Commercial Intelligence" data-zh="商业情报">Commercial Intelligence</div><div class="out-desc" data-i18n="od1" data-en="We know what builders need before they can articulate it. That intelligence shapes our product partnerships, event programming, and B2B positioning — faster than any market research." data-zh="我们在构建者能表达之前就知道他们需要什么。这种情报塑造我们的产品合作、活动编排和B2B定位——比任何市场调研都快。">We know what builders need before they can articulate it. That intelligence shapes our product partnerships, event programming, and B2B positioning — faster than any market research.</div></div>
+        </div>
+        <div class="outcome">
+          <div class="out-icon">🎯</div>
+          <div><div class="out-title" data-i18n="ot2" data-en="Talent Pipeline" data-zh="人才管道">Talent Pipeline</div><div class="out-desc" data-i18n="od2" data-en="The best builders in Singapore are in this community. We see who's shipping, how fast, and how they think — before we ever make a hire or collaboration offer." data-zh="新加坡最优秀的构建者都在这个社区里。我们在做任何招聘或合作提议之前，就能看到谁在发布、速度多快以及他们的思维方式。">The best builders in Singapore are in this community. We see who's shipping, how fast, and how they think — before we ever make a hire or collaboration offer.</div></div>
+        </div>
+        <div class="outcome">
+          <div class="out-icon">🤝</div>
+          <div><div class="out-title" data-i18n="ot3" data-en="Partner Positioning" data-zh="合作伙伴定位">Partner Positioning</div><div class="out-desc" data-i18n="od3" data-en="SGInnovate, e27, and future partners don't just want logo placement. They want access to quality builders. ChronoAI owning that community gives us leverage — and makes the partnership renewable." data-zh="SGInnovate、e27和未来的合作伙伴不只是想要品牌展示。他们想要接触优质构建者。ChronoAI拥有这个社区给了我们筹码——并使合作关系可以持续。">SGInnovate, e27, and future partners don't just want logo placement. They want access to quality builders. ChronoAI owning that community gives us leverage — and makes the partnership renewable.</div></div>
+        </div>
+      </div>
+
+      <div style="display:flex;flex-direction:column">
+        <div class="outcome">
+          <div class="out-icon">📈</div>
+          <div><div class="out-title" data-i18n="ot4" data-en="Event Amplification" data-zh="活动放大">Event Amplification</div><div class="out-desc" data-i18n="od4" data-en="What's Next Episode 2 doesn't need paid promotion. The community fills it organically — because they trust the curation and they were part of building it." data-zh="What's Next第二期不需要付费推广。社区有机地填满它——因为他们信任策划，而且他们是建设过程的一部分。">What's Next Episode 2 doesn't need paid promotion. The community fills it organically — because they trust the curation and they were part of building it.</div></div>
+        </div>
+        <div class="outcome">
+          <div class="out-icon">✨</div>
+          <div><div class="out-title" data-i18n="ot5" data-en="Brand Equity — The Moat" data-zh="品牌资产——护城河">Brand Equity — The Moat</div><div class="out-desc" data-i18n="od5" data-en="When people say 'AI builder community in Singapore,' they say ChronoAI. No ad spend can buy that. Consistent community presence builds it — one conversation at a time." data-zh="当人们提到'新加坡AI构建者社区'，他们就会想到ChronoAI。没有广告支出能买到这个。持续的社区存在建立它——一次对话一次对话地积累。">When people say 'AI builder community in Singapore,' they say ChronoAI. No ad spend can buy that. Consistent community presence builds it — one conversation at a time.</div></div>
+        </div>
+
+        <div class="card" style="margin-top:12px;background:linear-gradient(135deg,rgba(124,92,252,.06),rgba(79,143,255,.04));border-color:rgba(124,92,252,.2)">
+          <div class="card-label" data-i18n="ql" data-en="Likely Questions" data-zh="可能的问题">Likely Questions</div>
+          <div style="display:flex;flex-direction:column;gap:8px;margin-top:6px">
+            <div style="font-size:12px"><span style="color:var(--accent);font-weight:700" data-i18n="q1q" data-en="Why WhatsApp and not Discord?" data-zh="为什么是WhatsApp而不是Discord？">Why WhatsApp and not Discord?</span><br><span style="color:var(--muted)" data-i18n="q1a" data-en="WhatsApp is where Singaporeans are. Lower friction, higher daily open rate for our demographic." data-zh="WhatsApp是新加坡人所在的地方。对我们的目标人群来说摩擦更低，每日打开率更高。">WhatsApp is where Singaporeans are. Lower friction, higher daily open rate for our demographic.</span></div>
+            <div style="font-size:12px"><span style="color:var(--accent);font-weight:700" data-i18n="q2q" data-en="How do we prevent it from dying?" data-zh="我们如何防止它消亡？">How do we prevent it from dying?</span><br><span style="color:var(--muted)" data-i18n="q2a" data-en="Consistent daily team presence + seeding from events. Content calendar ensures nobody wonders what to post." data-zh="每日团队持续存在+来自活动的种子内容。内容日历确保没有人不知道发什么。">Consistent daily team presence + seeding from events. Content calendar ensures nobody wonders what to post.</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SLIDE 5 — WHAT WE'VE DELIVERED ══════════════════════════════ -->
+<section class="slide" id="s4">
+  <div class="pnum">05 / 05</div>
+  <div class="orb o1"></div><div class="orb o3"></div>
+  <div class="inner">
+    <div class="fi">
+      <div class="badge" data-i18n="b5" data-en="This Week" data-zh="本周">This Week</div>
+    </div>
+    <h2 class="fi d1" data-i18n="h5" data-en="What we've built<br>and what's next." data-zh="我们已构建的<br>以及接下来的计划。">What we've built<br>and what's next.</h2>
+    <div class="divider fi d2"></div>
+
+    <div class="grid2 fi d3">
+      <!-- Done -->
+      <div>
+        <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--green);margin-bottom:14px" data-i18n="dl" data-en="✓ Delivered" data-zh="✓ 已完成">✓ Delivered</div>
+        <div class="task">
+          <div class="task-dot" style="background:var(--green)"></div>
+          <div><div class="task-text" data-i18n="t1" data-en="What's Next — Full event concept, programming & stakeholder decks" data-zh="What's Next — 完整活动概念、日程和利益相关者演示文稿">What's Next — Full event concept, programming & stakeholder decks</div><div class="task-sub" data-i18n="t1s" data-en="CEO debrief, organiser overview, partnership overview — all live on GitHub Pages" data-zh="CEO简报、组织者概览、合作伙伴概览——全部在GitHub Pages上线">CEO debrief, organiser overview, partnership overview — all live on GitHub Pages</div></div>
+        </div>
+        <div class="task">
+          <div class="task-dot" style="background:var(--green)"></div>
+          <div><div class="task-text" data-i18n="t2" data-en="5 partners confirmed and integrated into all decks" data-zh="5个合作伙伴已确认并整合到所有演示文稿中">5 partners confirmed and integrated into all decks</div><div class="task-sub">Hashmeta · AI APEX Asia · First Prompt · e27 · SGInnovate</div></div>
+        </div>
+        <div class="task">
+          <div class="task-dot" style="background:var(--green)"></div>
+          <div><div class="task-text" data-i18n="t3" data-en="WhatsApp community launched — 4 channels live" data-zh="WhatsApp社区启动——4个频道已上线">WhatsApp community launched — 4 channels live</div><div class="task-sub" data-i18n="t3s" data-en="Main · Singapore AI · Showcase · OpenClaw — with full community maintenance strategy" data-zh="主频道·新加坡AI·展示·OpenClaw——配有完整的社区维护策略">Main · Singapore AI · Showcase · OpenClaw — with full community maintenance strategy</div></div>
+        </div>
+        <div class="task">
+          <div class="task-dot" style="background:var(--green)"></div>
+          <div><div class="task-text" data-i18n="t4" data-en="Full event programming & logistics brief" data-zh="完整活动日程和后勤简报">Full event programming & logistics brief</div><div class="task-sub" data-i18n="t4s" data-en="Running order, space breakdown, speaker brief, roles, open items" data-zh="运行顺序、空间分配、演讲者简报、角色分配、待定事项">Running order, space breakdown, speaker brief, roles, open items</div></div>
+        </div>
+        <div class="task">
+          <div class="task-dot" style="background:var(--gold)"></div>
+          <div><div class="task-text" data-i18n="t5" data-en="Lu.ma listing — in progress" data-zh="Lu.ma活动列表——进行中">Lu.ma listing — in progress</div><div class="task-sub" data-i18n="t5s" data-en="Targeting live March 13. Event description finalised." data-zh="目标3月13日上线。活动描述已定稿。">Targeting live March 13. Event description finalised.</div></div>
+        </div>
+      </div>
+
+      <!-- Next up -->
+      <div>
+        <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--accent);margin-bottom:14px" data-i18n="nl" data-en="→ Next Up" data-zh="→ 接下来">→ Next Up</div>
+        <div class="task">
+          <div class="task-dot" style="background:var(--accent)"></div>
+          <div><div class="task-text" data-i18n="n1" data-en="Lu.ma live + outreach begins" data-zh="Lu.ma上线+推广开始">Lu.ma live + outreach begins</div><div class="task-sub" data-i18n="n1s" data-en="WhatsApp AI channels, LinkedIn, partner cross-promo. Mar 13." data-zh="WhatsApp AI频道、LinkedIn、合作伙伴交叉推广。3月13日。">WhatsApp AI channels, LinkedIn, partner cross-promo. Mar 13.</div></div>
+        </div>
+        <div class="task">
+          <div class="task-dot" style="background:var(--accent)"></div>
+          <div><div class="task-text" data-i18n="n2" data-en="External demo selection" data-zh="外部演示筛选">External demo selection</div><div class="task-sub" data-i18n="n2s" data-en="Open application via Lu.ma RSVP or curated invite. 3 spots." data-zh="通过Lu.ma报名申请或精选邀请。3个名额。">Open application via Lu.ma RSVP or curated invite. 3 spots.</div></div>
+        </div>
+        <div class="task">
+          <div class="task-dot" style="background:var(--accent)"></div>
+          <div><div class="task-text" data-i18n="n3" data-en="Speaker decks collected by Mar 22" data-zh="3月22日前收集演讲者幻灯片">Speaker decks collected by Mar 22</div><div class="task-sub" data-i18n="n3s" data-en="Terence (Hashmeta) + Prof Liu Yang (NTU). Format standardised." data-zh="Terence (Hashmeta) + 刘杨教授 (NTU)。格式标准化。">Terence (Hashmeta) + Prof Liu Yang (NTU). Format standardised.</div></div>
+        </div>
+        <div class="task">
+          <div class="task-dot" style="background:var(--accent)"></div>
+          <div><div class="task-text" data-i18n="n4" data-en="AV + tech rehearsal — Mar 25" data-zh="AV + 技术排练——3月25日">AV + tech rehearsal — Mar 25</div><div class="task-sub" data-i18n="n4s" data-en="Screen, mic, HDMI, wifi. All spaces tested before event day." data-zh="屏幕、麦克风、HDMI、wifi。活动前测试所有空间。">Screen, mic, HDMI, wifi. All spaces tested before event day.</div></div>
+        </div>
+        <div class="task">
+          <div class="task-dot" style="background:var(--accent)"></div>
+          <div><div class="task-text" data-i18n="n5" data-en="Community seeding — first 4 weeks of content" data-zh="社区种子内容——首4周内容">Community seeding — first 4 weeks of content</div><div class="task-sub" data-i18n="n5s" data-en="Content calendar live. Daily 15-min check-in habit starts Monday." data-zh="内容日历上线。每日15分钟签到习惯从周一开始。">Content calendar live. Daily 15-min check-in habit starts Monday.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+let lang='en';
+function setLang(l){
+  if(l===lang)return;lang=l;
+  document.querySelectorAll('.lb').forEach(b=>b.classList.toggle('active',b.textContent.trim()===(l==='en'?'EN':'中文')));
+  document.body.classList.add('fading');
+  setTimeout(()=>{
+    document.querySelectorAll('[data-i18n]').forEach(el=>{const v=el.getAttribute('data-'+l);if(v)el.innerHTML=v;});
+    document.body.classList.remove('fading');
+  },200);
+}
+
+const slides=document.querySelectorAll('.slide');
+const nav=document.getElementById('navDots');
+slides.forEach((_,i)=>{const d=document.createElement('button');d.className='nav-dot';d.onclick=()=>slides[i].scrollIntoView({behavior:'smooth'});nav.appendChild(d)});
+const dots=document.querySelectorAll('.nav-dot');
+new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){const i=[...slides].indexOf(e.target);dots.forEach((d,j)=>d.classList.toggle('active',i===j))}})},{threshold:.45}).observe&&slides.forEach(s=>new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){const i=[...slides].indexOf(e.target);dots.forEach((d,j)=>d.classList.toggle('active',i===j))}})},{threshold:.45}).observe(s));
+new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible')}})},{threshold:.1}).observe&&document.querySelectorAll('.fi').forEach(el=>new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')})},{threshold:.1}).observe(el));
+document.addEventListener('keydown',e=>{const a=[...slides].findIndex(s=>{const r=s.getBoundingClientRect();return r.top>=0&&r.top<innerHeight/2});if(e.key==='ArrowDown'&&a<slides.length-1)slides[a+1].scrollIntoView({behavior:'smooth'});if(e.key==='ArrowUp'&&a>0)slides[a-1].scrollIntoView({behavior:'smooth'})});
+</script>
+</body>
+</html>
